@@ -23,6 +23,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
+    var weatherTimer: Timer!
     
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
@@ -45,14 +46,18 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         //        forecast = Forecast(weatherDict: obj)
         
        
-        
-        
+        weatherTimer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(makeWeather), userInfo: nil, repeats: true)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        makeWeather()
+        
+    }
+    
+    func makeWeather() {
         locationAuthStatus()
-        print(Location.sharedInstance.longitude)
+        print("Getting Weather")
     }
     
     func locationAuthStatus(){
@@ -124,7 +129,6 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     func updateMainUI() {
         
         dateLabel.text = currentWeather.date
-        //print("Weather Type:\(currentWeather.weatherType)")
         currentTempLabel.text = String(currentWeather.currentTemp)
         currentWeatherLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName

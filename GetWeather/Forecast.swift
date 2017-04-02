@@ -105,14 +105,14 @@ class Forecast {
         
         Alamofire.request(WEATHER_FORECAST_URL).responseJSON{response in
             let result = response.result
-            print(result)
+           
             if let dict = result.value as? Dictionary<String, AnyObject> {
                 
                 if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
                     
                     for obj in list {
                         let forecast = Forecast(weatherDict: obj)
-                        print(obj)
+                   
                         self.forecasts.append(forecast)
                         
                     }

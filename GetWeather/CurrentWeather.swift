@@ -64,14 +64,12 @@ class CurrentWeather {
                 
                 if let name = dict["name"] as? String {
                     self._cityName = name.capitalized
-                    print(self._cityName)
                 }
                 
                 if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
                     
                     if let main = weather[0]["main"] as? String {
                         self._weatherType = main.capitalized
-                        print(self._weatherType)
                     }
                     
                     if let icon = weather[0]["icon"] as? String {
@@ -83,12 +81,8 @@ class CurrentWeather {
                     
                     if let currentTemperature = main["temp"] as? Double {
                         
-//                        let kelvinToFarenheitPreDiv = (currentTemperature * (9/5) - 459.67)
-//                        let kelvinToFarenheit = Double(round(10 * kelvinToFarenheitPreDiv/10))
-                        
-                        
                         self._currentTemp = Tools.getFarenheitFromKelvin(kelvin: currentTemperature)
-                        print(self._currentTemp)
+
                     }
                 }
             }
