@@ -7,5 +7,7 @@ target 'GetWeather' do
   # Pods for GetWeather
 
 pod 'Alamofire', '~> 4.4'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end
